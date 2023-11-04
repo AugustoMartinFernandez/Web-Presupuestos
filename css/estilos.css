@@ -369,6 +369,10 @@ li {
 
 .close-alert {
   color: #fff;
+  background: url(fondo.png), #360033;
+  background: url(fondo.png),
+    -webkit-gradient(linear, right top, left top, from(#7b4397), to(#dc2430));
+  background: url(fondo.png), linear-gradient(to left, #0b8793, #dc2430);
   border: none;
   padding: 10px 20px;
   margin-top: 10px;
@@ -376,56 +380,6 @@ li {
   cursor: pointer;
 }
 
-
-/* Estilos para la sección de opiniones */
-.opiniones {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.opiniones h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.opiniones-container {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 20px;
-  background-color: #f7f7f7;
-}
-
-.agregar-opinion,
-.eliminar-opiniones {
-  margin-bottom: 20px;
-}
-
-input[type="text"],
-textarea,
-input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #009688;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.botones-container {
-  display: flex;
-  justify-content: center;
-}
 
 
 

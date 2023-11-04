@@ -139,58 +139,7 @@ function closeAlert() {
 }
 //  js para opiniones
 
-document.addEventListener('DOMContentLoaded', function () {
-    const opinionContainer = document.getElementById('opiniones-container');
-    const nombreInput = document.getElementById('nombre');
-    const opinionInput = document.getElementById('opinion');
-    const enviarOpinionButton = document.getElementById('enviar-opinion');
-    const contrasenaInput = document.getElementById('contrasena');
-    const eliminarOpinionesButton = document.getElementById('eliminar-opiniones');
 
-    // Función para mostrar opiniones
-    function mostrarOpiniones() {
-        opinionContainer.innerHTML = '';
-        const opiniones = JSON.parse(localStorage.getItem('opiniones')) || [];
-
-        opiniones.forEach(opinion => {
-            const date = new Date(opinion.timestamp);
-            const hora = date.toLocaleTimeString();
-            const opinionDiv = document.createElement('div');
-            opinionDiv.innerHTML = `<p><strong>${opinion.nombre}:</strong> ${opinion.opinion} (Enviado a las ${hora})</p>`;
-            opinionContainer.appendChild(opinionDiv);
-        });
-    }
-
-    // Función para enviar opiniones
-    enviarOpinionButton.addEventListener('click', function () {
-        const nombre = nombreInput.value;
-        const opinion = opinionInput.value;
-        if (nombre && opinion) {
-            const timestamp = Date.now();
-            const opinionData = { nombre, opinion, timestamp };
-            const opiniones = JSON.parse(localStorage.getItem('opiniones')) || [];
-            opiniones.push(opinionData);
-            localStorage.setItem('opiniones', JSON.stringify(opiniones));
-            mostrarOpiniones();
-            nombreInput.value = '';
-            opinionInput.value = '';
-        }
-    });
-
-    // Función para eliminar opiniones (requiere contraseña)
-    eliminarOpinionesButton.addEventListener('click', function () {
-        const contrasena = contrasenaInput.value;
-        if (contrasena === '061022') {
-            localStorage.removeItem('opiniones');
-            opinionContainer.innerHTML = '';
-            contrasenaInput.value = '';
-        } else {
-            alert('Contraseña incorrecta. No tienes permiso para eliminar opiniones.');
-        }
-    });
-
-    mostrarOpiniones();
-});
 
 
 

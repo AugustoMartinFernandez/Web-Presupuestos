@@ -144,35 +144,7 @@
                 Siéntete libre de explorar nuestra página y comenzar tu viaje hacia una gestión financiera más inteligente. Estamos aquí para ayudarte en cada paso del camino. ¡<strong>Gracias por confiar en nosotros</strong>!</p>
         </div>
     </section>
-
-    <section>
-        <section class="opiniones">
-            <div class="agregar-opinion">
-                <h3 style="text-align: center;">Deja tu opinión</h3>
-                <input type="text" id="nombre" placeholder="Tu Nombre" required>
-                <textarea id="opinion" placeholder="Tu Opinión" required></textarea>
-                <div class="botones-container">
-                    <button id="enviar-opinion">Enviar</button>
-                </div>
-            </div>
-            <section>
-                <h2>Sus Comentarios</h2>
-                <div class="opiniones-container" id="opiniones-container">
-                    <!-- Las opiniones se mostrarán aquí -->
-                </div>
-            </section>
-
-            <div class="eliminar-opiniones">
-                <h3>Opcion Administrador</h3>
-                <input type="password" id="contrasena" placeholder="Contraseña">
-                <div class="botones-container">
-                    <button id="eliminar-opiniones">Eliminar</button>
-                </div>
-            </div>
-        </section>
-
-
-    </section>
+    
 
     <footer>
         <div class="div-footer">
@@ -228,9 +200,30 @@
             </div>
         </div>
     </footer>
-    
 
-
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyDga7DUu5HK4lBrgmnvOE6ChhwbuN_DEDw",
+          authDomain: "presupuestos-web-cdece.firebaseapp.com",
+          projectId: "presupuestos-web-cdece",
+          storageBucket: "presupuestos-web-cdece.appspot.com",
+          messagingSenderId: "870713540005",
+          appId: "1:870713540005:web:937cdc35a25192ed127c4c",
+          measurementId: "G-LD16RTSRYE"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
