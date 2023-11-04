@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./images/favicon/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content=" #09f ">
@@ -14,106 +15,216 @@
 
 <body onload="cargarApp()">
 
-    <div class=" text-center cabecero">
-        <div class="presupuesto">
-            <div class="presupuesto_titulo">Presupuesto Disponible</div>
-            <div class="presupuesto_valor" id="presupuesto">+ 2,000.00</div>
-            <div class="presupuesto_ingreso limpiarEstilos">
-                <div class="presupuesto_ingreso--texto">Ingresos</div>
-                <div class="derecha">
-                    <div class="presupuesto_ingreso--valor" id="ingresos">
-                        +4,000.00
-                    </div>
-                    <div class="presupuesto_ingreso--porcentaje">&nbsp;</div>
-                </div>
-            </div>
-            <div class="presupuesto_egreso limpiarEstilos">
-                <div class="presupuesto_egreso--texto">Egresos</div>
-                <div class="derecha limpiarEstilos">
-                    <div class="presupuesto_egreso--valor" id="egresos">- 1,900.00</div>
-                    <div class="presupuesto_egreso--porcentaje" id="porcentaje">
-                        45%
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <main>
 
-    <form id="forma" onsubmit="return false;">
-        <div class="agregar">
-            <div class="agregar_contenedor">
-                <select class="agregar_tipo" id="tipo">
-                    <option value="ingreso" selected>+</option>
-                    <option value="egreso">-</option>
-                </select>
-                <input type="text" class="agregar_descripcion" placeholder="Agregar Descripción" id="descripcion" />
-                <input type="number" class="agregar_valor" placeholder="Valor" id="valor" step="any" />
-                <button class="agregar_btn" onclick="agregarDato()">
-                    <ion-icon name="checkmark-circle-outline"></ion-icon>
-                </button>
+        <div class=" text-center cabecero">
+            <div class="presupuesto">
+                <div class="presupuesto_titulo">Ingreso Total</div>
+                <div class="presupuesto_valor" id="presupuesto">+ </div>
+                <div class="presupuesto_ingreso limpiarEstilos">
+                    <div class="presupuesto_ingreso--texto">Ingresos</div>
+                    <div class="derecha">
+                        <div class="presupuesto_ingreso--valor" id="ingresos">
+                            +
+                        </div>
+                        <div class="presupuesto_ingreso--porcentaje">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="presupuesto_egreso limpiarEstilos">
+                    <div class="presupuesto_egreso--texto">Egresos</div>
+                    <div class="derecha limpiarEstilos">
+                        <div class="presupuesto_egreso--valor" id="egresos">- </div>
+                        <div class="presupuesto_egreso--porcentaje" id="porcentaje">
+                            %
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
+
+        <form id="forma" onsubmit="return false;">
+            <div class="agregar">
+                <div class="agregar_contenedor">
+                    <select class="agregar_tipo" id="tipo">
+                        <option value="ingreso" selected>+</option>
+                        <option value="egreso">-</option>
+                    </select>
+                    <input type="text" class="agregar_descripcion" placeholder="Agregar Descripción" id="descripcion" />
+                    <input type="number" class="agregar_valor" placeholder="Valor" id="valor" step="any" />
+                    <button class="agregar_btn" onclick="agregarDato()">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <section>
+            <div class="ingreso">
+                <h2 class="ingreso_titulo">Ingresos</h2>
+                <div id="lista-ingresos">
+                    <div class="elemento limpiarEstilos">
+                        <div class="elemento_descripcion">Salario</div>
+                        <div class="derecha limpiarEstilos">
+                            <div class="elemento_valor">+ 000.00</div>
+                            <div class="elemento_eliminar">
+                                <button class="elemento_eliminar--btn">
+                                    <ion-icon name="close-circle-outline"></ion-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elemento limpiarEstilos">
+                        <div class="elemento_descripcion">Venta coche</div>
+                        <div class="derecha limpiarEstilos">
+                            <div class="elemento_valor">+ 1,500.00</div>
+                            <div class="elemento_eliminar">
+                                <button class="elemento_eliminar--btn">
+                                    <ion-icon name="close-circle-outline"></ion-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class=" egreso">
+                <h2 class="egreso_titulo">Egresos</h2>
+                <div id="lista-egresos">
+                    <div class="elemento limpiarEstilos">
+                        <div class="elemento_descripcion">Renta departamento</div>
+                        <div class="derecha limpiarEstilos">
+                            <div class="elemento_valor">- 900.00</div>
+                            <div class="elemento_porcentaje">21%</div>
+                            <div class="elemento_eliminar">
+                                <button class="elemento_eliminar--btn">
+                                    <ion-icon name="close-circle-outline"></ion-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elemento limpiarEstilos">
+                        <div class="elemento_descripcion">Ropa</div>
+                        <div class="derecha limpiarEstilos">
+                            <div class="elemento_valor">- 400.00</div>
+                            <div class="elemento_porcentaje">10%</div>
+                            <div class="elemento_eliminar">
+                                <button class="elemento_eliminar--btn">
+                                    <ion-icon name="close-circle-outline"></ion-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <section>
-        <div class="ingreso">
-            <h2 class="ingreso_titulo">Ingresos</h2>
-            <div id="lista-ingresos">
-                <div class="elemento limpiarEstilos">
-                    <div class="elemento_descripcion">Salario</div>
-                    <div class="derecha limpiarEstilos">
-                        <div class="elemento_valor">+ 2,200.00</div>
-                        <div class="elemento_eliminar">
-                            <button class="elemento_eliminar--btn">
-                                <ion-icon name="close-circle-outline"></ion-icon>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="elemento limpiarEstilos">
-                    <div class="elemento_descripcion">Venta coche</div>
-                    <div class="derecha limpiarEstilos">
-                        <div class="elemento_valor">+ 1,500.00</div>
-                        <div class="elemento_eliminar">
-                            <button class="elemento_eliminar--btn">
-                                <ion-icon name="close-circle-outline"></ion-icon>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+        <div class="alert-container">
+            <div class="alert-message">
+                <p>¡Hola!👋 Antes de comenzar, te recomendamos eliminar los ejemplos predefinidos para agregar tus propios
+                    datos. Solo tienes que hacer clic en los ejemplos y se eliminarán automáticamente. Luego, podrás
+                    ingresar tus propios ingresos y egresos para calcular tu presupuesto personal. ¡Esperamos que
+                    encuentres esta herramienta útil!🚀💫
+                    .</p>
+                <button class="close-alert" onclick="closeAlert()">Cerrar</button>
             </div>
         </div>
-        </div>
-        <div class=" egreso">
-            <h2 class="egreso_titulo">Egresos</h2>
-            <div id="lista-egresos">
-                <div class="elemento limpiarEstilos">
-                    <div class="elemento_descripcion">Renta departamento</div>
-                    <div class="derecha limpiarEstilos">
-                        <div class="elemento_valor">- 900.00</div>
-                        <div class="elemento_porcentaje">21%</div>
-                        <div class="elemento_eliminar">
-                            <button class="elemento_eliminar--btn">
-                                <ion-icon name="close-circle-outline"></ion-icon>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="elemento limpiarEstilos">
-                    <div class="elemento_descripcion">Ropa</div>
-                    <div class="derecha limpiarEstilos">
-                        <div class="elemento_valor">- 400.00</div>
-                        <div class="elemento_porcentaje">10%</div>
-                        <div class="elemento_eliminar">
-                            <button class="elemento_eliminar--btn">
-                                <ion-icon name="close-circle-outline"></ion-icon>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+    </section>
+
+    <section>
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Aviso Importante!🚀</h4>
+            <p> <strong>Bienvenidos</strong> a la página de presupuestos, donde te ayudamos a tomar el control de tus finanzas personales y planificar un futuro financiero más sólido. Somos un equipo comprometido en ofrecerte las herramientas y recursos necesarios para gestionar tu dinero de manera efectiva. <br>
+                Nuestra página fue creada por <strong>Martín Fernández</strong>, un joven desarrollador web apasionado por la tecnología y la educación financiera. Martín se propuso la misión de simplificar el proceso de presupuestar y rastrear tus ingresos y gastos diarios, lo que te permite tomar decisiones financieras informadas. <br>
+                En este espacio, encontrarás una variedad de herramientas y consejos para ayudarte a crear un presupuesto personalizado, rastrear tus gastos y ahorrar para tus metas financieras. Queremos empoderarte para que tomes el control de tu dinero y logres una mayor estabilidad financiera. <br>
+                Siéntete libre de explorar nuestra página y comenzar tu viaje hacia una gestión financiera más inteligente. Estamos aquí para ayudarte en cada paso del camino. ¡<strong>Gracias por confiar en nosotros</strong>!</p>
         </div>
     </section>
+
+    <section>
+        <section class="opiniones">
+            <div class="agregar-opinion">
+                <h3 style="text-align: center;">Deja tu opinión</h3>
+                <input type="text" id="nombre" placeholder="Tu Nombre" required>
+                <textarea id="opinion" placeholder="Tu Opinión" required></textarea>
+                <div class="botones-container">
+                    <button id="enviar-opinion">Enviar</button>
+                </div>
+            </div>
+            <section>
+                <h2>Sus Comentarios</h2>
+                <div class="opiniones-container" id="opiniones-container">
+                    <!-- Las opiniones se mostrarán aquí -->
+                </div>
+            </section>
+
+            <div class="eliminar-opiniones">
+                <h3>Opcion Administrador</h3>
+                <input type="password" id="contrasena" placeholder="Contraseña">
+                <div class="botones-container">
+                    <button id="eliminar-opiniones">Eliminar</button>
+                </div>
+            </div>
+        </section>
+
+
+    </section>
+
+    <footer>
+        <div class="div-footer">
+            <div class="contenedor-footer">
+                <div class="content-foo">
+                    <h4>Contacto☎️</h4>
+                    <p>Teléfono: 3815949432</p>
+                    <p>Email: martinnfernandezz.20@gmail.com</p>
+                    <p>Dirección: Trancas, Tucumán</p>
+                </div>
+                <div class="content-foo">
+                    <h4>Redes Sociales💻</h4>
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/profile.php?id=100058211406066&mibextid=ZbWKwL" target="_blank">
+                                <ion-icon name="logo-facebook"></ion-icon>
+                            </a></li>
+                        <li><a href="https://www.linkedin.com/in/mart%C3%ADn-fern%C3%A1ndez?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+                                <ion-icon name="logo-linkedIn"></ion-icon>
+                            </a></li>
+                        <li><a href="https://instagram.com/martinn_fernandeez?igshid=OGQ5ZDc2ODk2ZA==" target="_blank">
+                                <ion-icon name="logo-instagram"></ion-icon>
+                            </a></li>
+                        <!-- Agrega más iconos de redes sociales según tus necesidades -->
+                    </ul>
+                </div>
+                <div class="content-foo">
+                    <h4>Acerca de Nosotros</h4>
+                    <p>Bienvenidos a la página de presupuestos, donde te ayudamos a tomar el control de tus finanzas
+                        personales y planificar un futuro financiero más sólido. Somos un equipo comprometido en
+                        ofrecerte las herramientas y recursos necesarios para gestionar tu dinero de manera efectiva.
+
+                        Nuestra página fue creada por Martín Fernández, un joven desarrollador web apasionado por la
+                        tecnología y la educación financiera. Martín se propuso la misión de simplificar el proceso de
+                        presupuestar y rastrear tus ingresos y gastos diarios, lo que te permite tomar decisiones
+                        financieras informadas.
+
+                        En este espacio, encontrarás una variedad de herramientas y consejos para ayudarte a crear un
+                        presupuesto personalizado, rastrear tus gastos y ahorrar para tus metas financieras. Queremos
+                        empoderarte para que tomes el control de tu dinero y logres una mayor estabilidad financiera.
+
+                        Siéntete libre de explorar nuestra página y comenzar tu viaje hacia una gestión financiera más
+                        inteligente. Estamos aquí para ayudarte en cada paso del camino. ¡Gracias por confiar en
+                        nosotros!.</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="titulo-final">
+                    &copy; Empresa Desarrollo Web | Martin Fernandez
+                </h2>
+            </div>
+        </div>
+    </footer>
+    
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

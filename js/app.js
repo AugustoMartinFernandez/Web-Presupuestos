@@ -8,54 +8,54 @@ const egresos = [
     new Egreso('Ropa', 400)
 ];
 
-let cargarApp = ()=>{
+let cargarApp = () => {
     cargarCabecero();
     cargarIngresos();
     cargarEgresos();
 }
 
-let totalIngresos = ()=>{
+let totalIngresos = () => {
     let totalIngreso = 0;
-    for(let ingreso of ingresos){
+    for (let ingreso of ingresos) {
         totalIngreso += ingreso.valor;
     }
     return totalIngreso;
 }
 
-let totalEgresos = ()=>{
+let totalEgresos = () => {
     let totalEgreso = 0;
-    for(let egreso of egresos){
+    for (let egreso of egresos) {
         totalEgreso += egreso.valor;
     }
     return totalEgreso;
 }
 
-let cargarCabecero = ()=>{
+let cargarCabecero = () => {
     let presupuesto = totalIngresos() - totalEgresos();
-    let porcentajeEgreso = totalEgresos()/totalIngresos();
+    let porcentajeEgreso = totalEgresos() / totalIngresos();
     document.getElementById('presupuesto').innerHTML = formatoMoneda(presupuesto);
     document.getElementById('porcentaje').innerHTML = formatoPorcentaje(porcentajeEgreso);
     document.getElementById('ingresos').innerHTML = formatoMoneda(totalIngresos());
     document.getElementById('egresos').innerHTML = formatoMoneda(totalEgresos());
 }
 
-const formatoMoneda = (valor)=>{
-    return valor.toLocaleString('es-AR',{style:'currency', currency:'ARS', minimumFractionDigits:2});
+const formatoMoneda = (valor) => {
+    return valor.toLocaleString('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 2 });
 }
 
-const formatoPorcentaje = (valor)=>{
-    return valor.toLocaleString('en-AR',{style:'percent', minimumFractionDigits:2});
+const formatoPorcentaje = (valor) => {
+    return valor.toLocaleString('en-AR', { style: 'percent', minimumFractionDigits: 2 });
 }
 
-const cargarIngresos = ()=>{
+const cargarIngresos = () => {
     let ingresosHTML = '';
-    for(let ingreso of ingresos){
+    for (let ingreso of ingresos) {
         ingresosHTML += crearIngresoHTML(ingreso);
     }
     document.getElementById('lista-ingresos').innerHTML = ingresosHTML;
 }
 
-const crearIngresoHTML = (ingreso)=>{
+const crearIngresoHTML = (ingreso) => {
     let ingresoHTML = `
     <div class="elemento limpiarEstilos">
     <div class="elemento_descripcion">${ingreso.descripcion}</div>
@@ -73,28 +73,28 @@ const crearIngresoHTML = (ingreso)=>{
     return ingresoHTML;
 }
 
-const eliminarIngreso = (id)=>{
-    let indiceEliminar = ingresos.findIndex( ingreso => ingreso.id === id);
+const eliminarIngreso = (id) => {
+    let indiceEliminar = ingresos.findIndex(ingreso => ingreso.id === id);
     ingresos.splice(indiceEliminar, 1);
     cargarCabecero();
     cargarIngresos();
 }
 
-const cargarEgresos = ()=>{
+const cargarEgresos = () => {
     let egresosHTML = '';
-    for(let egreso of egresos){
+    for (let egreso of egresos) {
         egresosHTML += crearEgresoHTML(egreso);
     }
     document.getElementById('lista-egresos').innerHTML = egresosHTML;
 }
 
-const crearEgresoHTML = (egreso)=>{
+const crearEgresoHTML = (egreso) => {
     let egresoHTML = `
     <div class="elemento limpiarEstilos">
     <div class="elemento_descripcion">${egreso.descripcion}</div>
     <div class="derecha limpiarEstilos">
         <div class="elemento_valor">- ${formatoMoneda(egreso.valor)}</div>
-        <div class="elemento_porcentaje">${formatoPorcentaje(egreso.valor/totalEgresos())}</div>
+        <div class="elemento_porcentaje">${formatoPorcentaje(egreso.valor / totalEgresos())}</div>
         <div class="elemento_eliminar">
             <button class='elemento_eliminar--btn'>
                 <ion-icon name="close-circle-outline"
@@ -107,28 +107,92 @@ const crearEgresoHTML = (egreso)=>{
     return egresoHTML;
 }
 
-let eliminarEgreso = (id)=>{
+let eliminarEgreso = (id) => {
     let indiceEliminar = egresos.findIndex(egreso => egreso.id === id);
     egresos.splice(indiceEliminar, 1);
     cargarCabecero();
     cargarEgresos();
 }
 
-let agregarDato = ()=>{
+let agregarDato = () => {
     let forma = document.forms['forma'];
     let tipo = forma['tipo'];
     let descripcion = forma['descripcion'];
     let valor = forma['valor'];
-    if(descripcion.value !== '' && valor.value !== ''){
-        if(tipo.value === 'ingreso'){
-            ingresos.push( new Ingreso(descripcion.value, +valor.value));
+    if (descripcion.value !== '' && valor.value !== '') {
+        if (tipo.value === 'ingreso') {
+            ingresos.push(new Ingreso(descripcion.value, +valor.value));
             cargarCabecero();
             cargarIngresos();
         }
-        else if(tipo.value === 'egreso'){
-           egresos.push( new Egreso(descripcion.value, +valor.value));
-           cargarCabecero();
-           cargarEgresos();
+        else if (tipo.value === 'egreso') {
+            egresos.push(new Egreso(descripcion.value, +valor.value));
+            cargarCabecero();
+            cargarEgresos();
         }
     }
 }
+
+function closeAlert() {
+    var alertContainer = document.querySelector(".alert-container");
+    alertContainer.style.display = "none";
+}
+//  js para opiniones
+
+document.addEventListener('DOMContentLoaded', function () {
+    const opinionContainer = document.getElementById('opiniones-container');
+    const nombreInput = document.getElementById('nombre');
+    const opinionInput = document.getElementById('opinion');
+    const enviarOpinionButton = document.getElementById('enviar-opinion');
+    const contrasenaInput = document.getElementById('contrasena');
+    const eliminarOpinionesButton = document.getElementById('eliminar-opiniones');
+
+    // Función para mostrar opiniones
+    function mostrarOpiniones() {
+        opinionContainer.innerHTML = '';
+        const opiniones = JSON.parse(localStorage.getItem('opiniones')) || [];
+
+        opiniones.forEach(opinion => {
+            const date = new Date(opinion.timestamp);
+            const hora = date.toLocaleTimeString();
+            const opinionDiv = document.createElement('div');
+            opinionDiv.innerHTML = `<p><strong>${opinion.nombre}:</strong> ${opinion.opinion} (Enviado a las ${hora})</p>`;
+            opinionContainer.appendChild(opinionDiv);
+        });
+    }
+
+    // Función para enviar opiniones
+    enviarOpinionButton.addEventListener('click', function () {
+        const nombre = nombreInput.value;
+        const opinion = opinionInput.value;
+        if (nombre && opinion) {
+            const timestamp = Date.now();
+            const opinionData = { nombre, opinion, timestamp };
+            const opiniones = JSON.parse(localStorage.getItem('opiniones')) || [];
+            opiniones.push(opinionData);
+            localStorage.setItem('opiniones', JSON.stringify(opiniones));
+            mostrarOpiniones();
+            nombreInput.value = '';
+            opinionInput.value = '';
+        }
+    });
+
+    // Función para eliminar opiniones (requiere contraseña)
+    eliminarOpinionesButton.addEventListener('click', function () {
+        const contrasena = contrasenaInput.value;
+        if (contrasena === '061022') {
+            localStorage.removeItem('opiniones');
+            opinionContainer.innerHTML = '';
+            contrasenaInput.value = '';
+        } else {
+            alert('Contraseña incorrecta. No tienes permiso para eliminar opiniones.');
+        }
+    });
+
+    mostrarOpiniones();
+});
+
+
+
+
+
